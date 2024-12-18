@@ -1,4 +1,4 @@
-# AgriNext Backend
+# HomeShareApp
 
 This is a backend application built with the following technologies:
 
