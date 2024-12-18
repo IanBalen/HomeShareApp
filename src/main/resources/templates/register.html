@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Register</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      width: 300px;
+      margin: 0 auto;
+    }
+    h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 6px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      background: #2196F3;
+      color: #fff;
+      padding: 8px;
+      border: none;
+      cursor: pointer;
+    }
+    .switch-container {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .switch-container a {
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .switch-container a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Register</h2>
+  <form th:action="@{/security/register}" method="post" th:object="${createUserRequest}">
+    <label>First Name:</label>
+    <input type="text" th:field="*{firstName}" required placeholder="Enter first name"/>
+
+    <label>Last Name:</label>
+    <input type="text" th:field="*{lastName}" required placeholder="Enter last name"/>
+
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" required placeholder="Enter your email"/>
+
+    <label>Password:</label>
+    <input type="password" th:field="*{password}" required placeholder="Enter your password"/>
+
+    <button type="button" onclick="submitForm()">Register</button>
+  </form>
+  <div class="switch-container">
+    <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
+  </div>
+</div>
+</body>
+<script>
+  function submitForm() {
+    const data = {
+      firstName: document.querySelector("[name='firstName']").value,
+      lastName: document.querySelector("[name='lastName']").value,
+      email: document.querySelector("[name='email']").value,
+      password: document.querySelector("[name='password']").value
+    };
+
+    fetch('/security/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+            .then(response => {
+              if (response.ok) {
+                window.location.href = '/login';
+              } else {
+                alert("Registration failed");
+              }
+            });
+  }
+</script>
+</html>

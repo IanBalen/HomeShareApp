@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_DB: homeShareDB
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+  app:
+    build: .
+    container_name: home_share_app
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
