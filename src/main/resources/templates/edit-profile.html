@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Edit Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+    .container {
+      margin: 0 auto;
+      width: 400px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 6px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      background: #4CAF50;
+      color: #fff;
+      padding: 8px 16px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Edit Profile</h1>
+  <form th:action="@{/profile/update}" method="post" th:object="${user}">
+    <label>Email (read-only)</label>
+    <input type="text" th:field="*{email}" readonly />
+
+    <label>First Name</label>
+    <input type="text" th:field="*{firstName}" />
+
+    <label>Last Name</label>
+    <input type="text" th:field="*{lastName}" />
+
+    <!-- if you wanted them to change password, you’d add fields here -->
+
+    <button type="submit">Save Changes</button>
+  </form>
+</div>
+</body>
+</html>

@@ -29,15 +29,11 @@ docker-compose up --build
 http://localhost:8081/swagger-ui/index.html
 ```
 
-5. Access the registration page at:
+5. Access the home page at:
 ```bash
-http://localhost:8081/register
+http://localhost:8081/home
 ```
 
-6. Access the login page at:
-```bash
-http://localhost:8081/login
-```
 
 **NOTE**: The application will be running on port 8081.
 

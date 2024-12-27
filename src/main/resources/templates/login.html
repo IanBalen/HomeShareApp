@@ -6,13 +6,11 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            text-align: center;
         }
         .container {
             width: 300px;
             margin: 0 auto;
-        }
-        h2 {
-            text-align: center;
         }
         label {
             display: block;
@@ -37,9 +35,9 @@
             margin-top: 15px;
         }
         .switch-container a {
-            color: #000;
             text-decoration: none;
             font-weight: bold;
+            color: #000;
         }
         .switch-container a:hover {
             text-decoration: underline;
@@ -49,41 +47,19 @@
 <body>
 <div class="container">
     <h2>Login</h2>
-    <form th:action="@{/security/login}" method="post" th:object="${loginRequest}">
-        <label>Email:</label>
-        <input type="text" th:field="*{email}" required placeholder="Enter your email"/>
+    <form th:action="@{/login}" method="post">
+        <label>Username (Email):</label>
+        <input type="text" name="username" required placeholder="Email or username"/>
 
         <label>Password:</label>
-        <input type="password" th:field="*{password}" required placeholder="Enter your password"/>
+        <input type="password" name="password" required placeholder="Password"/>
 
-        <button type="button" onclick="submitForm()">Login</button>
+        <button type="submit">Login</button>
     </form>
+
     <div class="switch-container">
         <p>Don't have an account? <a th:href="@{/register}">Register here</a></p>
     </div>
 </div>
 </body>
-<script>
-    function submitForm() {
-        const data = {
-            email: document.querySelector("[name='email']").value,
-            password: document.querySelector("[name='password']").value
-        };
-
-        fetch('/security/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = '/login';
-                } else {
-                    alert("Login failed");
-                }
-            });
-    }
-</script>
 </html>

@@ -5,6 +5,7 @@ import com.homeshare.domain.User;
 import com.homeshare.domain.request.CreateUserRequest;
 import com.homeshare.domain.request.LoginRequest;
 import com.homeshare.domain.response.AuthResponse;
+import com.homeshare.repository.UserFileRepository;
 import com.homeshare.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,7 @@ import static com.homeshare.domain.enums.Role.ROLE_USER;
 public class SecurityService {
 
     private final UserRepository userRepository;
+    private final UserFileRepository userFileRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -45,6 +47,7 @@ public class SecurityService {
                 .build();
 
         userRepository.save(customer);
+        userFileRepository.saveUser(customer);
     }
 
     public AuthResponse login(LoginRequest request) {
