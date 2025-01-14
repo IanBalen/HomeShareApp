@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:latest
-    container_name: postgres
+    container_name: postgresDB
     environment:
       POSTGRES_DB: homeShareDB
       POSTGRES_USER: user

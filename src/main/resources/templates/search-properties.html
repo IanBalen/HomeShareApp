@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Properties</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { width: 500px; margin: 0 auto; }
+        h2 { text-align: center; }
+        label { display: block; margin-top: 10px; }
+        input { width: 100%; padding: 6px; margin-bottom: 10px; box-sizing: border-box; }
+        button { width: 100%; background: #2196F3; color: #fff; padding: 8px; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Search Properties</h2>
+    <form th:action="@{/properties/results}" method="get">
+        <label>State:</label>
+        <input type="text" name="state" required placeholder="Enter state" />
+
+        <label>City:</label>
+        <input type="text" name="city" required placeholder="Enter city" />
+
+        <label>Start Date:</label>
+        <input type="date" name="startDate" required/>
+
+        <label>End Date:</label>
+        <input type="date" name="endDate" required/>
+
+        <label>Minimum Number of Rooms (Optional):</label>
+        <input type="number" name="numberOfRooms" min="1" placeholder="Enter minimum rooms" />
+
+        <button type="submit">Search</button>
+    </form>
+    <p style="text-align:center; margin-top:10px;">
+        <a th:href="@{/home}">Back to Home</a>
+    </p>
+</div>
+</body>
+</html>

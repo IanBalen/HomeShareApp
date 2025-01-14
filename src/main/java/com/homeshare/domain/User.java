@@ -47,6 +47,8 @@ public class User implements UserDetails {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    private int points;
+
 
     @Override
     @JsonIgnore

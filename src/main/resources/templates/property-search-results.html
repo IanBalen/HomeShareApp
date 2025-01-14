@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            width: 800px;
+            margin: 0 auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #2196F3;
+            color: white;
+        }
+        .button {
+            text-decoration: none;
+            padding: 6px 12px;
+            background: #2196F3;
+            color: #fff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Search Results</h2>
+    <div th:if="${#lists.isEmpty(properties)}">
+        <p>No properties found matching your criteria.</p>
+        <a class="button" th:href="@{/properties/search}">Back to Search</a>
+    </div>
+    <div th:if="${not #lists.isEmpty(properties)}">
+        <table>
+            <thead>
+            <tr>
+                <th>State</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Floor</th>
+                <th>Rooms</th>
+                <th>Features</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="property : ${properties}">
+                <td th:text="${property.state}">State</td>
+                <td th:text="${property.city}">City</td>
+                <td th:text="${property.address}">Address</td>
+                <td th:text="${property.floor}">Floor</td>
+                <td th:text="${property.numberOfRooms}">Rooms</td>
+                <td th:text="${property.uniqueFeatures}">Features</td>
+                <td>
+                    <a th:href="@{|/properties/${property.id}/book|}" class="button">Book Now</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p style="text-align:center; margin-top:20px;">
+            <a class="button" th:href="@{/properties/search}">New Search</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

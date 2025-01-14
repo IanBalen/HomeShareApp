@@ -27,4 +27,10 @@ public class UserService {
     public User findByEmail(String email) {
         return userRepository.findByEmail(email).orElse(null);
     }
+
+    public User awardPoints(User user, int points) {
+        user.setPoints(user.getPoints() + points);
+        return updateUser(user);
+    }
+
 }
